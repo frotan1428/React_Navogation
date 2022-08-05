@@ -1,63 +1,55 @@
-import { StyleSheet, Text, View } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import ProfileScreen from "./screens/ProfileScreen";
+import FollowersScreen from "./screens/FollowersScreen";
+import SettingsScreen from "./screens/SettingsScreen";
 import FaIcon from "@expo/vector-icons/FontAwesome5";
-
+import DrawerContent from "./components/drawer-content";
+import HomeTabsScreen from "./screens/HomeTabsScreen";
 
 const Drawer = createDrawerNavigator();
-import React from 'react'
-import ProfileScreen from './Screens/ProfileScreen';
-import FlowersScreen from './Screens/FlowersScreen';
-import SettingsScreen from './Screens/SettingsScreen';
-import DrawerContent from './components/DrawerContent';
-import HomeTabsScreen from './Screens/HomeTabsScreen';
 
-const App = () => {
+export default function App() {
   return (
     <NavigationContainer>
-    <Drawer.Navigator initialRouteName="followers" screenOptions={{
-      drawerType:"back",   //front, back, slide, permanent
-      drawerPosition:"left",
-      drawerActiveTintColor:"#EDEDED",
-      drawerStyle: styles.drawer,
-      drawerLabelStyle: styles.label,
-    }}
-    drawerContent={ (props)=> <DrawerContent {...props}/>}
-    >
-       <Drawer.Screen name="home" component={HomeTabsScreen} options={{
-        title:"Products",
-        drawerIcon: ()=> <FaIcon name="home"/>
-
-      }} />
-      <Drawer.Screen name="profile" component={ProfileScreen} options={{
-        title:"Profile",
-        drawerIcon: ()=> <FaIcon name="user"/>
-
-      }} />
-      <Drawer.Screen name="Flowers" component={FlowersScreen} options={{
-        title:"Fllowers",
-        drawerIcon: ()=> <FaIcon name="users"/>
-
-      }}  />
-      <Drawer.Screen name="Setting" component={SettingsScreen} 
-      options={{
-        title:"Setting",
-        drawerIcon: ()=> <FaIcon name="cog" />
-
-      }} />
-    </Drawer.Navigator>
-
-  </NavigationContainer>
-  )
+      <Drawer.Navigator initialRouteName="followers" screenOptions={{
+        drawerType:"back",   //front, back, slide, permanent
+        drawerPosition:"left",
+        drawerActiveTintColor:"#ef00ec",
+        drawerStyle: styles.drawer,
+        drawerLabelStyle: styles.label,
+      }}
+      drawerContent={ (props)=> <DrawerContent {...props}/>}
+      >
+        <Drawer.Screen name="home" component={HomeTabsScreen} options={{
+          title:"Products",
+          drawerIcon: ()=> <FaIcon name="home"/>
+        }} />
+        <Drawer.Screen name="profile" component={ProfileScreen} options={{
+          title:"Profile",
+          drawerIcon: ()=> <FaIcon name="user"/>
+        }} />
+        <Drawer.Screen name="followers" component={FollowersScreen} options={{
+          title:"Followers",
+          drawerIcon: ()=> <FaIcon name="users"/>
+        }}/>
+        <Drawer.Screen name="settings" component={SettingsScreen} options={{
+          title:"Settings",
+          drawerIcon: ()=> <FaIcon name="cog"/>
+        }}/>
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
 }
 
-export default App
-
 const styles = StyleSheet.create({
-  drawer:{
-    backgroundColor:"#FF4848"
+  drawer: {
+    backgroundColor: "#addbf6",
   },
   label:{
     marginLeft:-20
   }
-})
+
+});
